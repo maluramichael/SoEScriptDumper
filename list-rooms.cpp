@@ -1397,7 +1397,7 @@ std::string LootData::to_flag() const {
     
     const auto& prizeit = prizes.find(item);
     if (prizeit != prizes.end()) {
-        strncpy(sitem, prizeit->second, sizeof(sitem));
+        strncpy_s(sitem, prizeit->second, sizeof(sitem));
         sitem[sizeof(sitem)-1] = 0;
         char* p = strchr(sitem, '(');
         if (p) *p = 0;
@@ -2203,7 +2203,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                 bool exists = false;
                 for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                 if (!exists) {
-                    strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                    strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                     absscripts.push_back(std::make_pair(addr, strings.back()));
                 }
 #endif
@@ -2580,7 +2580,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                 bool exists = false;
                 for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                 if (!exists) {
-                    strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                    strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                     absscripts.push_back(std::make_pair(addr, strings.back()));
                 }
 #endif
@@ -2699,7 +2699,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                     bool exists = false;
                     for (const auto& s:npcscripts) if (s.first == val16) { exists=true; break; }
                     if (!exists) {
-                        strings.push_back(strdup(("Unnamed NPC talk script " + u16val2str(val16)).c_str()));
+                        strings.push_back(_strdup(("Unnamed NPC talk script " + u16val2str(val16)).c_str()));
                         npcscripts.push_back(std::make_pair(val16, strings.back()));
                     }
 #endif
@@ -2724,7 +2724,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                     bool exists = false;
                     for (const auto& s:npcscripts) if (s.first == val16) { exists=true; break; }
                     if (!exists) {
-                        strings.push_back(strdup(("Unnamed Short script " + u16val2str(val16)).c_str()));
+                        strings.push_back(_strdup(("Unnamed Short script " + u16val2str(val16)).c_str()));
                         npcscripts.push_back(std::make_pair(val16, strings.back()));
                     }
 #endif
@@ -2743,7 +2743,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                         bool exists = false;
                         for (const auto& s:npcscripts) if (s.first == val2) { exists=true; break; }
                         if (!exists) {
-                            strings.push_back(strdup((
+                            strings.push_back(_strdup((
                                                   ( (val1==0x040)?"Unnamed NPC Talk script ":
                                                     (val1==0x100)?"Unnamed NPC Damage script ":
                                                     (val1==0x200)?"Unnamed NPC Kill script " : "Unnamed NPC script "
@@ -3426,7 +3426,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                 bool exists = false;
                 for (const auto& s:globalscripts) if (s.first == type) { exists=true; break; }
                 if (!exists) {
-                    strings.push_back(strdup(("Unnamed Global script " + u8val2str(type)).c_str()));
+                    strings.push_back(_strdup(("Unnamed Global script " + u8val2str(type)).c_str()));
                     globalscripts.push_back(std::make_pair(type, strings.back()));
                 }
 #endif
@@ -3451,7 +3451,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                 bool exists = false;
                 for (const auto& s:npcscripts) if (s.first == val16) { exists=true; break; }
                 if (!exists) {
-                    strings.push_back(strdup(("Unnamed Short script " + u16val2str(val16)).c_str()));
+                    strings.push_back(_strdup(("Unnamed Short script " + u16val2str(val16)).c_str()));
                     npcscripts.push_back(std::make_pair(val16, strings.back()));
                 }
 #endif
@@ -3472,7 +3472,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                 bool exists = false;
                 for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                 if (!exists) {
-                    strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                    strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                     absscripts.push_back(std::make_pair(addr, strings.back()));
                 }
 #endif
@@ -3495,7 +3495,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                 bool exists = false;
                 for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                 if (!exists) {
-                    strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                    strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                     absscripts.push_back(std::make_pair(addr, strings.back()));
                 }
 #endif
@@ -3583,7 +3583,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                         bool exists = false;
                         for (const auto& s:globalscripts) if (s.first == index) { exists=true; break; }
                         if (!exists) {
-                            strings.push_back(strdup(("Unnamed Global script " + u8val2str((uint8_t)index)).c_str()));
+                            strings.push_back(_strdup(("Unnamed Global script " + u8val2str((uint8_t)index)).c_str()));
                             globalscripts.push_back(std::make_pair((uint8_t)index, strings.back()));
                         }
 #endif
@@ -3596,7 +3596,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                         bool exists = false;
                         for (const auto& s:npcscripts) if (s.first == index) { exists=true; break; }
                         if (!exists) {
-                            strings.push_back(strdup(("Unnamed Short script " + u16val2str((uint16_t)index)).c_str()));
+                            strings.push_back(_strdup(("Unnamed Short script " + u16val2str((uint16_t)index)).c_str()));
                             npcscripts.push_back(std::make_pair((uint16_t)index, strings.back()));
                         }
 #endif
@@ -3611,7 +3611,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                         bool exists = false;
                         for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                         if (!exists) {
-                            strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                            strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                             absscripts.push_back(std::make_pair(addr, strings.back()));
                         }
 #endif
@@ -3626,7 +3626,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                         bool exists = false;
                         for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                         if (!exists) {
-                            strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                            strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                             absscripts.push_back(std::make_pair(addr, strings.back()));
                         }
 #endif
@@ -3641,7 +3641,7 @@ static void printscript(const char* spaces, const uint8_t* buf, uint32_t scripta
                         bool exists = false;
                         for (const auto& s:absscripts) if (s.first == addr) { exists=true; break; }
                         if (!exists) {
-                            strings.push_back(strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
+                            strings.push_back(_strdup(("Unnamed ABS script " + u24val2str(addr)).c_str()));
                             absscripts.push_back(std::make_pair(addr, strings.back()));
                         }
 #endif
@@ -3805,7 +3805,9 @@ int main(int argc, char** argv)
     if (strcmp(argv[1], "-b")==0) batch = true;
 
     uint8_t* buf = NULL;
-    FILE* f = fopen(argv[batch?2:1], "rb");
+    FILE* f;
+    
+    fopen_s(&f, argv[batch?2:1], "rb");
     if (!f) die("Could not open input file!\n");
     fseek(f, 0L, SEEK_END);
     size_t len = ftell(f);
@@ -3854,7 +3856,7 @@ int main(int argc, char** argv)
                 }
             }
             if (!match)
-                maps.push_back(std::make_pair(map_id, strdup(map_addr)));
+                maps.push_back(std::make_pair(map_id, _strdup(map_addr)));
             
             map_addr+=mlen+1+2; // always skip 'm.'
             mlen = 0;
